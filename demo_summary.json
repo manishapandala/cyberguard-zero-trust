@@ -1,0 +1,113 @@
+{
+  "scope": "deterministic rule-pipeline validation",
+  "events_processed": 5000,
+  "attack_types_exercised": 6,
+  "expected_classification_rate": 1.0,
+  "median_event_ms": 0.0128,
+  "p95_event_ms": 0.0184,
+  "examples": [
+    {
+      "expected": "Unauthorized backup access",
+      "assessment": {
+        "status": "Malicious",
+        "attack_type": "Unauthorized backup access",
+        "reason": "Event labeled as 'suspicious' with indicators: unauthorized backup access",
+        "risk_score": 95,
+        "severity": "critical",
+        "controls": [
+          "ZTA: least privilege",
+          "NIST AC-6",
+          "NIST AU-6"
+        ]
+      }
+    },
+    {
+      "expected": "Path traversal attempt",
+      "assessment": {
+        "status": "Malicious",
+        "attack_type": "Path traversal attempt",
+        "reason": "Event labeled as 'suspicious' with indicators: path traversal attempt",
+        "risk_score": 85,
+        "severity": "critical",
+        "controls": [
+          "ZTA: continuous verification",
+          "NIST SI-4",
+          "NIST AC-3"
+        ]
+      }
+    },
+    {
+      "expected": "Privilege escalation attempt",
+      "assessment": {
+        "status": "Malicious",
+        "attack_type": "Privilege escalation attempt",
+        "reason": "Event was failed and contains suspicious indicators: privilege escalation attempt",
+        "risk_score": 80,
+        "severity": "high",
+        "controls": [
+          "ZTA: least privilege",
+          "NIST AC-2",
+          "NIST AC-6"
+        ]
+      }
+    },
+    {
+      "expected": "Malware upload attempt",
+      "assessment": {
+        "status": "Malicious",
+        "attack_type": "Malware upload attempt",
+        "reason": "Event labeled as 'suspicious' with indicators: malware upload attempt",
+        "risk_score": 95,
+        "severity": "critical",
+        "controls": [
+          "ZTA: inspect traffic",
+          "NIST SI-3",
+          "NIST SI-4"
+        ]
+      }
+    },
+    {
+      "expected": "SQL injection attempt",
+      "assessment": {
+        "status": "Malicious",
+        "attack_type": "SQL injection attempt",
+        "reason": "Event labeled as 'suspicious' with indicators: sql injection attempt",
+        "risk_score": 95,
+        "severity": "critical",
+        "controls": [
+          "ZTA: inspect traffic",
+          "NIST SI-10",
+          "NIST SI-4"
+        ]
+      }
+    },
+    {
+      "expected": "Network reconnaissance",
+      "assessment": {
+        "status": "Malicious",
+        "attack_type": "Network reconnaissance",
+        "reason": "Event was blocked with suspicious user agent 'Nmap Scripting Engine': network reconnaissance",
+        "risk_score": 75,
+        "severity": "high",
+        "controls": [
+          "ZTA: continuous monitoring",
+          "NIST SI-4",
+          "NIST SC-7"
+        ]
+      }
+    },
+    {
+      "expected": "None",
+      "assessment": {
+        "status": "Non-malicious",
+        "attack_type": "None",
+        "reason": "No indicators of threat in log fields\u2014event is routine or allowed.",
+        "risk_score": 0,
+        "severity": "low",
+        "controls": [
+          "NIST AU-2: retain auditable event record"
+        ]
+      }
+    }
+  ]
+}
