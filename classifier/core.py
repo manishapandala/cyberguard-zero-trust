@@ -8,7 +8,7 @@ import csv
 import json
 import io
 import re
-from typing import Dict, Any, Tuple, Optional
+from typing import Dict, Tuple
 
 class ActivityClassifier:
     """Core activity classifier with robust parsing and validation."""

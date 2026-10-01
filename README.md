@@ -12,7 +12,7 @@ This repository is a cleaned, publishable version of the original prototype. Vir
 - returns a deterministic 0-100 risk score and severity;
 - maps classifications to Zero Trust concepts and selected NIST SP 800-53 controls;
 - supports a bounded Flask batch API;
-- includes 42 automated tests across parsing, CLI behavior, rules, scoring, and control mapping.
+- includes 45 automated tests across parsing, CLI behavior, rules, scoring, control mapping, and API boundaries.
 
 ## Run
 
@@ -34,3 +34,12 @@ python classify_activity.py '2024-07-31T00:00:00,177.52.183.80,192.168.1.50,HTTP
 ## Scope
 
 The public demo uses deterministic synthetic security events to verify rule behavior and latency. It is not a substitute for a production SIEM, human incident response, or validation against an organization's environment. Future work can compare hybrid ML anomaly detection against this auditable baseline without removing the rule trace.
+
+## Engineering quality
+
+- parsing, classification, assessment, delivery, and presentation are separate layers;
+- API batches and payloads are bounded to protect latency and memory;
+- Ruff, bytecode compilation, and 45 tests run in GitHub Actions;
+- detection reasons and control mappings remain traceable.
+
+See [ENGINEERING.md](ENGINEERING.md) for the architecture map, verification contract, safe-change checklist, and limitations.

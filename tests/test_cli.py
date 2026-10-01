@@ -6,7 +6,6 @@ Unit tests for CLI functionality and exit codes.
 import unittest
 import subprocess
 import sys
-import os
 from pathlib import Path
 
 class TestCLI(unittest.TestCase):
@@ -115,7 +114,6 @@ class TestCLI(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
 
 
 

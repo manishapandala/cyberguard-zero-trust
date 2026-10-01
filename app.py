@@ -6,7 +6,9 @@ from cyberguard import CyberGuard
 
 
 app = Flask(__name__, static_folder=".", static_url_path="")
+app.config["MAX_CONTENT_LENGTH"] = 1_048_576
 guard = CyberGuard()
+MAX_EVENT_CHARS = 16_000
 
 
 @app.get("/")
@@ -20,6 +22,8 @@ def analyze():
     event = str(payload.get("event", "")).strip()
     if not event:
         return jsonify({"error": "event is required"}), 400
+    if len(event) > MAX_EVENT_CHARS:
+        return jsonify({"error": f"event cannot exceed {MAX_EVENT_CHARS} characters"}), 400
     try:
         return jsonify(guard.assess(event).to_dict())
     except ValueError as error:
@@ -34,6 +38,8 @@ def analyze_batch():
         return jsonify({"error": "events must be a non-empty list"}), 400
     if len(events) > 1_000:
         return jsonify({"error": "batch limit is 1,000 events"}), 400
+    if any(len(str(event)) > MAX_EVENT_CHARS for event in events):
+        return jsonify({"error": f"events cannot exceed {MAX_EVENT_CHARS} characters"}), 400
     try:
         results = guard.assess_many(str(event) for event in events)
     except ValueError as error:
@@ -46,4 +52,4 @@ def analyze_batch():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
