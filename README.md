@@ -31,6 +31,12 @@ Classify one event from the command line:
 python classify_activity.py '2024-07-31T00:00:00,177.52.183.80,192.168.1.50,HTTPS,blocked,suspicious,ids,45164,"Mozilla/5.0",/download?backup.sql'
 ```
 
+## Outputs
+
+Every assessment returns a stable JSON-ready contract with `status`, `attack_type`, `reason`, `risk_score`, `severity`, and `controls`. Run `python run_demo.py` to regenerate [`demo_summary.json`](demo_summary.json), which publishes the 5,000-event validation summary, latency measurements from that local run, and seven complete example assessments.
+
+The live project page includes an interactive assessment payload and a downloadable copy of the batch output artifact.
+
 ## Scope
 
 The public demo uses deterministic synthetic security events to verify rule behavior and latency. It is not a substitute for a production SIEM, human incident response, or validation against an organization's environment. Future work can compare hybrid ML anomaly detection against this auditable baseline without removing the rule trace.
